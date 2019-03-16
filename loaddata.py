@@ -23,6 +23,16 @@ plt.ylabel("Number of blocks")
 plt.xlabel("Year completed")
 plt.show()
 
+# Where are the newest flats? Especially those built in the last 25 years
+# We look at 5 year bins
+
+import datetime
+currentyr = datetime.datetime.now().year
+df["agebin"] = (currentyr - df["year_completed"]) // 5
+# d = { df[df["agebin"]==i]  for i in range(5)}
+# df[bin == 0]["bldg_contract_town"].unique()
+
+
 # TODO - plot lease years remaining
 # Where are all the oldest flats
 # Where are all the newest flats
