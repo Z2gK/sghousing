@@ -25,19 +25,19 @@ Sources:
   - 'Housing and Development Board'
 License: 'https://data.gov.sg/open-data-licence'
 Frequency: 'Quarterly'
-Coverage: '2018-12-31 to 2018-12-31'
-Last Updated: '2019-01-07T10:35:54.626196'
+Coverage: '1937-01-01 to 2019-03-31'
+Last Updated: '2019-04-04T08:02:01.427736'
 Resources:
   -
     Identifier: '482bfa14-2977-4035-9c61-c85f871daf4e'
     Title: 'HDB Property Information'
-    Url: 'https://storage.data.gov.sg/hdb-property-information/resources/hdb-property-information-2019-01-07T10-35-54Z.csv'
+    Url: 'https://storage.data.gov.sg/hdb-property-information/resources/hdb-property-information-2019-04-04T08-02-00Z.csv'
     Format: 'CSV'
-    Coverage: '2018-12-31 to 2018-12-31'
+    Coverage: '1937-01-01 to 2019-03-31'
     Description: 'Please approach SingPost (www.singpost.com/contact-us/service-enquiry)
       if you require the postal code information. Do note that there may be charges
       involved.'
-    Last Updated: '2019-01-07T10:35:54.204796'
+    Last Updated: '2019-04-04T08:02:00.925224'
     Schema:
       -
         Name: 'blk_no'

@@ -17,21 +17,35 @@ year_completed_min = min(df["year_completed"])
 bins_min = year_completed_min - year_completed_min % 5
 bins_max = year_completed_max - year_completed_max % 5 + 5
 
-plt.hist(df["year_completed"],bins=list(range(bins_min, bins_max+1, 5)))
-plt.title("Number of HDB blocks and their year of completion")
-plt.ylabel("Number of blocks")
-plt.xlabel("Year completed")
-plt.show()
+#plt.hist(df["year_completed"],bins=list(range(bins_min, bins_max+1, 5)))
+#plt.title("Number of HDB blocks and their year of completion")
+#plt.ylabel("Number of blocks")
+#plt.xlabel("Year completed")
+#plt.show()
+
+# filter for eastie towns
+easttowns = set(["BD", "GL", "KWN", "MP", "PRC", "TAP"])
+# May want to include HG, SGN 
 
 # Where are the newest flats? Especially those built in the last 25 years
 # We look at 5 year bins
-
+import pickle
 import datetime
+
+fp = open("aux/towncode_dict.p", "rb")
+towncodes = pickle.load(fp)
+
 currentyr = datetime.datetime.now().year
 df["agebin"] = (currentyr - df["year_completed"]) // 5
 # d = { df[df["agebin"]==i]  for i in range(5)}
 # df[bin == 0]["bldg_contract_town"].unique()
-
+# Display the town codes only for bin 0, i.e. those built in the last 5 years
+townlist = df[df["agebin"] == 3]["bldg_contract_town"].unique()
+for towncode in townlist:
+    # Filter for east only
+    if towncode in easttowns:
+        print(towncodes[towncode])
+# print(townlist)
 
 # TODO - plot lease years remaining
 # Where are all the oldest flats
