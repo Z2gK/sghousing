@@ -52,22 +52,22 @@ currentyr = datetime.datetime.now().year
 df_fil["agebin"] = (currentyr - df_fil["year_completed"]) // 5
 
 # how many new flats were built there in each 5 year range?
-# a look at the past 20 years
+# a look at the past 30 years
 print("\nFor the chosen towns, how many blocks of flats were built in each 5 year bin?")
-for bin in range(4):
+for bin in range(6):
     print(df_fil[df_fil.agebin == bin].shape[0])
 print("==================================================")
 
 # how many new blocks were built in each town for the respective bins?
 print("\nBlocks of flats built in each 5 year bin, grouped by town")
-for bin in range(4):
+for bin in range(6):
     print(df_fil[df_fil.agebin == bin].groupby("bldg_contract_town")["bldg_contract_town"].count())
 print("==================================================")
 
 
 # What are the street names of these properties?
 print("\nWhere are these properties?")
-for bin in range(4):
+for bin in range(6):
     print("Bin: %s" % bin, end= " ")
     print(" - Displaying towns: ", end = " ")
     tcodes = df_fil[df_fil.agebin == bin]["bldg_contract_town"].unique()
@@ -85,7 +85,7 @@ print("==================================================")
 # Possibly non-residential properties
 
 print("Why are Marine Parade estates in the list, esp in bins 1, 2 and 3? These are old estates")
-print(df_fil[(df_fil.agebin <=3) & (df_fil.bldg_contract_town == "MP")].loc[:,["residential","commercial","multistorey_carpark","precinct_pavilion"]])
+print(df_fil[(df_fil.agebin <=5) & (df_fil.bldg_contract_town == "MP")].loc[:,["residential","commercial","multistorey_carpark","precinct_pavilion"]])
 print("These are multistorey carparks and precinct pavilions - should filter these out")
 
 print("==================================================")
@@ -98,7 +98,7 @@ print("==================================================")
 
 # What are the street names of these properties?
 print("\nWhere are these properties?")
-for bin in range(4):
+for bin in range(6):
     print("Bin: %s" % bin, end= " ")
     print(" - Displaying towns: ", end = " ")
     tcodes = df_fil[df_fil.agebin == bin]["bldg_contract_town"].unique()
@@ -113,11 +113,11 @@ print("==================================================")
 
 # Dump filtered desired data to another csv file
 print("Dump these data to a csv")
-df_fil[(df_fil.agebin <= 3)].to_csv("east20years.csv", index=False)
+df_fil[(df_fil.agebin <= 5)].to_csv("east20years.csv", index=False)
 
 print("==================================================")
 print("Select certain columns and dump to another csv file")
-df1 = df_fil.loc[:,["blk_no","street","max_floor_lvl","year_completed","total_dwelling_units", "3room_sold","4room_sold","5room_sold","exec_sold","multigen_sold","studio_apartment_sold","agebin"]]
+df1 = df_fil[(df_fil.agebin <= 5)].loc[:,["blk_no","street","max_floor_lvl","year_completed","total_dwelling_units", "3room_sold","4room_sold","5room_sold","exec_sold","multigen_sold","studio_apartment_sold","agebin"]]
 df1.to_csv("east20-narrow.csv", index=False)
 
 #townlist = df_fil[df_fil["agebin"] == 0]["bldg_contract_town"].unique()
