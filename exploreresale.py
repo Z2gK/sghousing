@@ -35,3 +35,4 @@ print("Number of sales during the period 2015-2017 : {}".format(dfp4_fil.shape[0
 print("Number of sales during the period mar 2012 - 2014 : {}".format(dfp3_fil.shape[0]))
 print("Number of sales during the period 2000 - feb 2012 : {}".format(dfp3_fil.shape[0]))
 
+# To have an option for output to csv file - use pd.concat
