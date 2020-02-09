@@ -1,9 +1,12 @@
 import pandas as pd
 import argparse
 
+# python exploreresale.py -b 123 -s "SERANGOON RD" -o out.csv
+
 parser = argparse.ArgumentParser(description="Basic resale data exploration")
 parser.add_argument("-b", "--blk", type=str, help="Block number", default="510")
 parser.add_argument("-s", "--street", type=str, help="Street name", default="ANG MO KIO AVE 8")
+parser.add_argument("-o", "--output", type=str, help="Output file")
 args = parser.parse_args()
 
 period1fname = "resale-flat-prices-based-on-approval-date-1990-1999.csv"
@@ -36,3 +39,10 @@ print("Number of sales during the period mar 2012 - 2014 : {}".format(dfp3_fil.s
 print("Number of sales during the period 2000 - feb 2012 : {}".format(dfp3_fil.shape[0]))
 
 # To have an option for output to csv file - use pd.concat
+if args.output:
+    outfilename = args.output
+    # sort=False option to avoid python warning
+    df_all = pd.concat([dfp2_fil, dfp3_fil, dfp4_fil, dfp5_fil], axis=0, sort=False)
+    df_all.to_csv(args.output, index=False)
+
+
